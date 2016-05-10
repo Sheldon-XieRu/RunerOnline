@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54B0AABF24A4F43F71C1C194 /* libPods-Runer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8BF26880E8E5E343C05867 /* libPods-Runer.a */; };
 		85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28BD1CE16CBB00FCAA8F /* main.m */; };
 		85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C01CE16CBB00FCAA8F /* AppDelegate.m */; };
 		85EE28C41CE16CBB00FCAA8F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE28C31CE16CBB00FCAA8F /* ViewController.m */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D83290CC2F9329BBECF72E6 /* Pods-Runer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Runer/Pods-Runer.debug.xcconfig"; sourceTree = "<group>"; };
+		62534A8F534C53C5E678AE6B /* Pods-Runer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Runer/Pods-Runer.release.xcconfig"; sourceTree = "<group>"; };
 		85EE28B91CE16CBA00FCAA8F /* Runer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85EE28BD1CE16CBB00FCAA8F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		85EE28BF1CE16CBB00FCAA8F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		85EE28C81CE16CBB00FCAA8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85EE28CB1CE16CBB00FCAA8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85EE28CD1CE16CBB00FCAA8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF8BF26880E8E5E343C05867 /* libPods-Runer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Runer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54B0AABF24A4F43F71C1C194 /* libPods-Runer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				85EE28BB1CE16CBB00FCAA8F /* Runer */,
 				85EE28BA1CE16CBA00FCAA8F /* Products */,
+				A56C264D796CFF22CBD7BA2E /* Pods */,
+				E3CE051DD31F1B1A012A5C69 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +86,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A56C264D796CFF22CBD7BA2E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1D83290CC2F9329BBECF72E6 /* Pods-Runer.debug.xcconfig */,
+				62534A8F534C53C5E678AE6B /* Pods-Runer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E3CE051DD31F1B1A012A5C69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF8BF26880E8E5E343C05867 /* libPods-Runer.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +110,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85EE28D01CE16CBB00FCAA8F /* Build configuration list for PBXNativeTarget "Runer" */;
 			buildPhases = (
+				23A9050871A3011C0FD1B4D5 /* 📦 Check Pods Manifest.lock */,
 				85EE28B51CE16CBA00FCAA8F /* Sources */,
 				85EE28B61CE16CBA00FCAA8F /* Frameworks */,
 				85EE28B71CE16CBA00FCAA8F /* Resources */,
+				9CC2BA99CCB503FDBC304443 /* 📦 Embed Pods Frameworks */,
+				FAA19124C8C3737027EB929E /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -144,6 +171,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		23A9050871A3011C0FD1B4D5 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9CC2BA99CCB503FDBC304443 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Runer/Pods-Runer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAA19124C8C3737027EB929E /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Runer/Pods-Runer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		85EE28B51CE16CBA00FCAA8F /* Sources */ = {
@@ -260,6 +335,7 @@
 		};
 		85EE28D11CE16CBB00FCAA8F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D83290CC2F9329BBECF72E6 /* Pods-Runer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Runer/Info.plist;
@@ -271,6 +347,7 @@
 		};
 		85EE28D21CE16CBB00FCAA8F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62534A8F534C53C5E678AE6B /* Pods-Runer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Runer/Info.plist;
@@ -299,6 +376,7 @@
 				85EE28D21CE16CBB00FCAA8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
