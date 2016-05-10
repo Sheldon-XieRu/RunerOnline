@@ -8,7 +8,10 @@
 
 #import "FDViewController.h"
 #import "FDUserInfo.h"
-@interface FDViewController ()
+#import <AVOSCloud.h>
+#import "FDleanCloudTool.h"
+
+@interface FDViewController ()<FDLoginDelegate>
 /**
  *  用户名字段
  */
@@ -21,6 +24,11 @@
  *  登录按钮被点击
  */
 - (IBAction)loginBtnClick:(id)sender;
+/**
+ *  注册按钮被点击
+ */
+- (IBAction)registerBtnClick:(id)sender;
+
 @end
 
 @implementation FDViewController
@@ -52,10 +60,31 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)loginBtnClick:(id)sender {
-    /**
-     *  把界面深的数据存入单例对象
-     */
     [FDUserInfo sharedFDUserInfo].userName = self.userNameField.text;
     [FDUserInfo sharedFDUserInfo].userpassword = self.userPasswordField.text;
+    //设置登陆状态代理
+    [FDleanCloudTool sharedFDleanCloudTool].loginDelegate = self;
+    /**
+     *  登陆
+     */
+    [[FDleanCloudTool sharedFDleanCloudTool]userLogin];
+    
+}
+- (IBAction)registerBtnClick:(id)sender {
+    [FDUserInfo sharedFDUserInfo].userName = self.userNameField.text;
+    [FDUserInfo sharedFDUserInfo].userpassword = self.userPasswordField.text;
+    [[FDleanCloudTool sharedFDleanCloudTool]userRegister];
+}
+#pragma mark -- KRLoginDelegate
+- (void)loginSuccess{
+    NSLog(@"登陆控制器中 获取登陆成功");
+}
+
+- (void)loginFaild{
+    NSLog(@"登陆控制器 获取的登陆状态失败");
+}
+
+- (void)loginNetError{
+    NSLog(@"登陆控制器中 获取登陆状态 网络失败");
 }
 @end
