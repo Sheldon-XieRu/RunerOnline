@@ -121,7 +121,23 @@ singleton_implementation(FDleanCloudTool)
     
 }
 
-
+- (void) TencentAutho{
+    [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ
+                     withAppKey:@"2871162928" andAppSecret:@"48251a10a8ec697289ed23faf7e0626c" andRedirectURI:@"https://api.weibo.com/oauth2/default.html"];
+    [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
+        if (error) {
+            
+        } else {
+            NSString *accessToken = object[@"access_token"];
+            NSString *username = object[@"username"];
+            NSString *avatar = object[@"avatar"];
+            NSDictionary *rawUser = object[@"raw-user"]; // 性别等第三方平台返回的用户信息
+            //...
+            NSLog(@"\naccessToken:%@\nusername:%@\navatar:%@\nrawUser:%@",accessToken,username,avatar,rawUser);
+            
+        }
+    } toPlatform:AVOSCloudSNSQQ];
+}
 
 
 @end

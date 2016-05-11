@@ -59,7 +59,11 @@ singleton_interface(FDleanCloudTool)
  */
 - (void) userRetrievePassword;
 /**
- *  公开三方登录
+ *  公开三方微博登录
  */
 - (void) sinaAutho;
+/**
+ *  公开三方qq登录
+ */
+- (void) TencentAutho;
 @end
