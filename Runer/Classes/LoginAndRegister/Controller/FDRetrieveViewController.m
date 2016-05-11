@@ -48,11 +48,31 @@
 */
 //找回密码成功
 - (void)retrievepasswordSucceed{
+    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎回来,请到邮箱:%@重置您的密码",[AVUser currentUser].username]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)retrieveBtnClick:(id)sender {
+    NSLog(@"qwe");
+    
+    [AVUser requestPasswordResetForEmailInBackground:[NSString stringWithFormat:@"%@",self.mailTextField.text] block:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"邮件已发送");
+          //  [self.retrieveDelegate retrievepasswordSucceed];
+        } else {
+          //  [self.retrieveDelegate retrievepasswordError];
+        }
+    }];
+    
+    [AVUser requestPasswordResetForEmailInBackground:@"myemail@example.com" block:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            
+        } else {
+            
+        }
+    }];
+    
     [FDleanCloudTool sharedFDleanCloudTool].retrieveDelegate = self;
-    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎%@",[AVUser currentUser].username]];
+    [FDUserInfo sharedFDUserInfo].userEmail = self.mailTextField.text;
 }
 
 - (IBAction)backActionClick:(id)sender {

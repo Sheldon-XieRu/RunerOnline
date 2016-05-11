@@ -46,10 +46,16 @@
 @property (nonatomic,weak) id<FDRetrieveDelegate> retrieveDelegate;
 
 singleton_interface(FDleanCloudTool)
-//公开一个登陆接口
+/**
+ *  公开登陆接口
+ */
 - (void) userLogin;
-//公开一个注册接口
+/**
+ *  公开注册接口
+ */
 - (void) userRegister;
-//公开一个修改密码接口
+/**
+ *  公开修改密码接口
+ */
 - (void) userRetrievePassword;
 @end

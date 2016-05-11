@@ -50,11 +50,15 @@
 
 
 - (IBAction)retrieveBtnClick:(id)sender {
+#warning 未实现代码
+    //截取到@之前的字符串为用户名!!!
+    NSString *userName = self.emailField.text;
     [FDUserInfo sharedFDUserInfo].userEmail = self.emailField.text;
-    [FDUserInfo sharedFDUserInfo].userRegisterName = self.emailField.text;
+    [FDUserInfo sharedFDUserInfo].userRegisterName = userName;
     [FDUserInfo sharedFDUserInfo].userRegisterPassword = self.userPasswordField.text;
     
-    [[FDleanCloudTool sharedFDleanCloudTool] userRetrievePassword];
+    [[FDleanCloudTool sharedFDleanCloudTool] userRegister];
+    [FDleanCloudTool sharedFDleanCloudTool].registerDelegate = self;
 }
 
 - (IBAction)backBtnClick:(id)sender {
@@ -64,8 +68,9 @@
     [MBProgressHUD showError:@"注册失败"];
 }
 -(void)registerSuccess{
-    [self dismissViewControllerAnimated:YES completion:nil];
     [MBProgressHUD showSuccess:@"注册成功"];
+    [self dismissViewControllerAnimated:YES completion:nil];
+   
     
 }
 - (void)registerNetError{

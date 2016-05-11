@@ -39,9 +39,9 @@ singleton_implementation(FDleanCloudTool)
 
 - (void)userRegister{
     AVUser *user = [AVUser user];// 新建 AVUser 对象实例
-    user.username = [FDUserInfo sharedFDUserInfo].userName;// 设置用户名
-    user.password =  [FDUserInfo sharedFDUserInfo].userpassword;// 设置密码
-    user.email = [NSString stringWithFormat:@"%@@live.com",[FDUserInfo sharedFDUserInfo].userName];// 设置邮箱
+    user.username = [FDUserInfo sharedFDUserInfo].userRegisterName;// 设置用户名
+    user.password =  [FDUserInfo sharedFDUserInfo].userRegisterPassword;// 设置密码
+    user.email = [FDUserInfo sharedFDUserInfo].userEmail;// 设置邮箱
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
@@ -54,14 +54,48 @@ singleton_implementation(FDleanCloudTool)
             [self.registerDelegate registerError];
         }
     }];
+    [self uploadImage];
+    /*
+    //准备头像数据
+    NSData *data = [@"我的工作经历" dataUsingEncoding:NSUTF8StringEncoding];
+    AVFile *file = [AVFile fileWithName:@"resume.txt" data:data];
+    [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        //返回一个唯一的 Url 地址
+        NSLog(@"test======%@",file.url);
+    }];
+    */
+     
+    
 }
-
+- (void)uploadImage{
+    //================//上传头像
+    UIImage *image = [UIImage imageNamed:@"瓦力"];
+    NSData *headData = UIImagePNGRepresentation(image);
+    AVFile *headImage = [AVFile fileWithName:@"headImage.png" data:headData];
+    [headImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSLog(@"头像地址%@",headImage.url);
+    }];
+    //上传进度
+    [headImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        // 成功或失败处理...
+    } progressBlock:^(NSInteger percentDone) {
+        // 上传进度数据，percentDone 介于 0 和 100。
+        NSLog(@"%ld",(long)percentDone);
+    }];
+    //下载进度
+    [headImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        // data 就是文件的数据流
+    } progressBlock:^(NSInteger percentDone) {
+        //下载的进度数据，percentDone 介于 0 和 100。
+    }];
+}
 - (void) userRetrievePassword{
     [AVUser requestPasswordResetForEmailInBackground:[NSString stringWithFormat:@"%@",[FDUserInfo sharedFDUserInfo].userEmail] block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            [self.registerDelegate registerSuccess];
+            NSLog(@"邮件已发送");
+            [self.retrieveDelegate retrievepasswordSucceed];
         } else {
-            [self.registerDelegate registerError];
+            [self.retrieveDelegate retrievepasswordError];
         }
     }];
 }

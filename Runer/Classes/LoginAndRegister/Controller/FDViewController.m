@@ -78,15 +78,15 @@
 }
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
-    NSLog(@"登陆控制器中 获取登陆成功");
     [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎%@!",[AVUser currentUser].username]];
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
     
 }
 
 - (void)loginFaild{
-    NSLog(@"登陆控制器 获取的呢路状态失败");
+    NSLog(@"登录失败");
 }
 -(void)loginNetError{
     NSLog(@"网络错误");
