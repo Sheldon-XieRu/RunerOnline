@@ -11,26 +11,28 @@
 
 @interface  FDleanCloudTool()
 
-
 //**注册 */
-- (void)userRegister;
-/** 登陆*/
-- (void)userLogin;
-
+- (void) userRegister;
+//** 登陆*/
+- (void) userLogin;
+//**找回密码*/
+- (void) userRetrievePassword;
 @end
 
 @implementation FDleanCloudTool
 
-
+singleton_implementation(FDleanCloudTool)
 
 - (void)userLogin{
     [AVUser logInWithUsernameInBackground:[FDUserInfo sharedFDUserInfo].userName password:[FDUserInfo sharedFDUserInfo].userpassword block:^(AVUser *user, NSError *error) {
         if (user != nil) {
             NSLog(@"登陆成功");
              [self.loginDelegate loginSuccess];
+
         } else {
             NSLog(@"登陆失败%@",error);
             [self.loginDelegate loginFaild];
+
         }
     }];
 }
@@ -45,13 +47,22 @@
         if (succeeded) {
             // 注册成功
             NSLog(@"注册成功");
-           
+            [self.loginDelegate registerSuccess];
         } else {
             // 失败的原因可能有多种，常见的是用户名已经存在。
-            NSLog(@"%@",error);
-            [self.loginDelegate loginNetError];
+            NSLog(@"%@注册失败",error);
+            [self.loginDelegate registerError];
         }
     }];
 }
-singleton_implementation(FDleanCloudTool)
+
+- (void) userRetrievePassword{
+    [AVUser requestPasswordResetForEmailInBackground:[NSString stringWithFormat:@"%@",[FDUserInfo sharedFDUserInfo].userEmail] block:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self.loginDelegate registerpasswordSucceed];
+        } else {
+            [self.loginDelegate registerpasswordError];
+        }
+    }];
+}
 @end

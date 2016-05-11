@@ -68,6 +68,8 @@
      *  登陆
      */
     [[FDleanCloudTool sharedFDleanCloudTool]userLogin];
+
+
     
 }
 - (IBAction)registerBtnClick:(id)sender {
@@ -78,13 +80,30 @@
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
     NSLog(@"登陆控制器中 获取登陆成功");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+    
 }
 
 - (void)loginFaild{
-    NSLog(@"登陆控制器 获取的登陆状态失败");
+    NSLog(@"登陆控制器 获取的呢路状态失败");
 }
-
-- (void)loginNetError{
-    NSLog(@"登陆控制器中 获取登陆状态 网络失败");
+-(void)loginNetError{
+    NSLog(@"网络错误");
+}
+-(void)dealloc{
+    NSLog(@"登陆窗户消失");
+}
+- (void)registerSuccess{
+    NSLog(@"注册成功");
+}
+- (void)registerError{
+    NSLog(@"注册失败");
+}
+- (void)registerpasswordError{
+    NSLog(@"找回密码失败");
+}
+-(void)registerpasswordSucceed{
+    NSLog(@"找回密码成功");
 }
 @end

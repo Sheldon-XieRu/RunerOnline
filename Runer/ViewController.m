@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import <AVOSCloud.h>
 @interface ViewController ()
 
 @end
@@ -16,12 +16,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self test];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
+}
+- (void) test{
+    NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
+    NSLog(@"你好:%@",currentUsername);
+    NSString *currentEmail = [AVUser currentUser].email; // 当前用户的邮箱
+    NSLog(@"请牢记您的邮箱:%@",currentEmail);
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginAndRegister" bundle:nil];
+     [self.view.window setRootViewController: storyboard.instantiateInitialViewController];
+    //[UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+    
+    [AVUser logOut];  //清除缓存用户对象
+    AVUser *currentUser = [AVUser currentUser];
+    NSLog(@"退出登录%@",currentUser);
+}
 @end

@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		54B0AABF24A4F43F71C1C194 /* libPods-Runer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8BF26880E8E5E343C05867 /* libPods-Runer.a */; };
+		8586A01F1CE2B5A4009B6E87 /* FDRetrieveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A01E1CE2B5A4009B6E87 /* FDRetrieveViewController.m */; };
 		85C98C071CE1C069002524C4 /* FDleanCloudTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C98C061CE1C069002524C4 /* FDleanCloudTool.m */; };
+		85C98C0A1CE21651002524C4 /* FDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C98C091CE21651002524C4 /* FDRegisterViewController.m */; };
 		85D3CFAF1CE1A7F300E48C73 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D3CF221CE1A7F300E48C73 /* FDViewController.m */; };
 		85D3CFB01CE1A7F300E48C73 /* FDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D3CF261CE1A7F300E48C73 /* FDUserInfo.m */; };
 		85D3CFB21CE1A7F300E48C73 /* LoginAndRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85D3CF2C1CE1A7F300E48C73 /* LoginAndRegister.storyboard */; };
@@ -23,8 +25,12 @@
 /* Begin PBXFileReference section */
 		1D83290CC2F9329BBECF72E6 /* Pods-Runer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Runer/Pods-Runer.debug.xcconfig"; sourceTree = "<group>"; };
 		62534A8F534C53C5E678AE6B /* Pods-Runer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Runer/Pods-Runer.release.xcconfig"; sourceTree = "<group>"; };
+		8586A01D1CE2B5A4009B6E87 /* FDRetrieveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRetrieveViewController.h; sourceTree = "<group>"; };
+		8586A01E1CE2B5A4009B6E87 /* FDRetrieveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRetrieveViewController.m; sourceTree = "<group>"; };
 		85C98C051CE1C069002524C4 /* FDleanCloudTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDleanCloudTool.h; sourceTree = "<group>"; };
 		85C98C061CE1C069002524C4 /* FDleanCloudTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDleanCloudTool.m; sourceTree = "<group>"; };
+		85C98C081CE21651002524C4 /* FDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRegisterViewController.h; sourceTree = "<group>"; };
+		85C98C091CE21651002524C4 /* FDRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRegisterViewController.m; sourceTree = "<group>"; };
 		85D3CF211CE1A7F300E48C73 /* FDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDViewController.h; sourceTree = "<group>"; };
 		85D3CF221CE1A7F300E48C73 /* FDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDViewController.m; sourceTree = "<group>"; };
 		85D3CF251CE1A7F300E48C73 /* FDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDUserInfo.h; sourceTree = "<group>"; };
@@ -99,6 +105,10 @@
 			children = (
 				85D3CF211CE1A7F300E48C73 /* FDViewController.h */,
 				85D3CF221CE1A7F300E48C73 /* FDViewController.m */,
+				85C98C081CE21651002524C4 /* FDRegisterViewController.h */,
+				85C98C091CE21651002524C4 /* FDRegisterViewController.m */,
+				8586A01D1CE2B5A4009B6E87 /* FDRetrieveViewController.h */,
+				8586A01E1CE2B5A4009B6E87 /* FDRetrieveViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -338,8 +348,10 @@
 				85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */,
 				85D3CFB01CE1A7F300E48C73 /* FDUserInfo.m in Sources */,
 				85D3CFAF1CE1A7F300E48C73 /* FDViewController.m in Sources */,
+				8586A01F1CE2B5A4009B6E87 /* FDRetrieveViewController.m in Sources */,
 				85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */,
 				85C98C071CE1C069002524C4 /* FDleanCloudTool.m in Sources */,
+				85C98C0A1CE21651002524C4 /* FDRegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +477,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Runer/Classes/Lib/XMPP/Vendor/libidn",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fdson.RunerOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fdson.Runer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -489,7 +501,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Runer/Classes/Lib/XMPP/Vendor/libidn",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.fdson.RunerOnline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fdson.Runer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

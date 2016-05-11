@@ -18,4 +18,8 @@ singleton_interface(FDUserInfo)
  * 用户密码
  */
 @property (nonatomic,strong) NSString *userpassword;
+/**
+ * 电子邮件
+ */
+@property (nonatomic,strong) NSString *userEmail;
 @end
