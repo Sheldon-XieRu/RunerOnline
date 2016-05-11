@@ -28,6 +28,10 @@
  *  注册按钮被点击
  */
 - (IBAction)registerBtnClick:(id)sender;
+/**
+ *  sinaAhto点击
+ */
+- (IBAction)sinaAthoBtnClick:(id)sender;
 
 @end
 
@@ -59,6 +63,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)loginBtnClick:(id)sender {
     [FDUserInfo sharedFDUserInfo].userName = self.userNameField.text;
     [FDUserInfo sharedFDUserInfo].userpassword = self.userPasswordField.text;
@@ -68,9 +73,6 @@
      *  登陆
      */
     [[FDleanCloudTool sharedFDleanCloudTool]userLogin];
-
-
-    
 }
 //注册按钮
 - (IBAction)registerBtnClick:(id)sender {
@@ -79,7 +81,6 @@
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
     [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎%@!",[AVUser currentUser].username]];
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
     
@@ -95,4 +96,7 @@
     NSLog(@"登陆窗户消失");
 }
 
+- (IBAction)sinaAthoBtnClick:(id)sender {
+    [[FDleanCloudTool sharedFDleanCloudTool]sinaAutho];
+}
 @end

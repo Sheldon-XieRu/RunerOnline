@@ -58,4 +58,8 @@ singleton_interface(FDleanCloudTool)
  *  公开修改密码接口
  */
 - (void) userRetrievePassword;
+/**
+ *  公开三方登录
+ */
+- (void) sinaAutho;
 @end

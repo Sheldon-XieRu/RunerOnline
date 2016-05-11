@@ -6,6 +6,32 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--微博登录-->
+        <scene sceneID="cBp-wt-xQP">
+            <objects>
+                <viewController id="B36-AF-a5o" customClass="FDSinaViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ELW-mN-ZW2"/>
+                        <viewControllerLayoutGuide type="bottom" id="0NU-D1-K9N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hYz-u4-CwP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="微博登录" id="ReL-or-apa">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="mKG-QG-13G">
+                            <connections>
+                                <action selector="backBtnClick:" destination="B36-AF-a5o" id="Nuw-68-jr1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aGh-GJ-0PQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="916" y="2293"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="Ahs-Av-h8I">
             <objects>
@@ -106,7 +132,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geR-Wt-eME">
-                                <rect key="frame" x="89" y="553" width="53" height="53"/>
+                                <rect key="frame" x="89" y="633" width="53" height="53"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="53" id="OgM-Bt-sJU"/>
@@ -114,21 +140,17 @@
                                 </constraints>
                                 <state key="normal" image="人人" backgroundImage="人人"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="第三方登录" translatesAutoresizingMaskIntoConstraints="NO" id="IKR-mN-A9U">
-                                <rect key="frame" x="80" y="482" width="254" height="9"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="9" id="4WI-Br-AAG"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsi-NZ-tFB">
-                                <rect key="frame" x="181" y="553" width="53" height="53"/>
+                                <rect key="frame" x="181" y="633" width="53" height="53"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="DVV-gF-7oq"/>
                                     <constraint firstAttribute="width" constant="53" id="K5W-IJ-9ZS"/>
                                 </constraints>
                                 <state key="normal" image="微博" backgroundImage="微博"/>
+                                <connections>
+                                    <action selector="sinaAthoBtnClick:" destination="Uuf-xf-qCj" eventType="touchUpInside" id="RYM-Gp-Eye"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bw4-dV-0za">
                                 <rect key="frame" x="50" y="295" width="314" height="49"/>
@@ -144,7 +166,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agn-le-L2P">
-                                <rect key="frame" x="281" y="551" width="53" height="53"/>
+                                <rect key="frame" x="281" y="633" width="53" height="53"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="QTe-Eq-dBD"/>
@@ -152,18 +174,30 @@
                                 </constraints>
                                 <state key="normal" image="微信" backgroundImage="微信"/>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="第三方登录" translatesAutoresizingMaskIntoConstraints="NO" id="IKR-mN-A9U">
+                                <rect key="frame" x="80" y="614" width="254" height="9"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="9" id="4WI-Br-AAG"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="D5h-I6-9cs" firstAttribute="top" secondItem="geR-Wt-eME" secondAttribute="bottom" constant="50" id="6BA-AB-U65"/>
+                            <constraint firstItem="IKR-mN-A9U" firstAttribute="top" relation="greaterThanOrEqual" secondItem="b6J-FP-lDk" secondAttribute="bottom" constant="10" id="6Gt-Ft-pQW"/>
                             <constraint firstItem="D5h-I6-9cs" firstAttribute="top" secondItem="4Uy-vg-w7m" secondAttribute="bottom" id="6Ti-zz-TtH"/>
                             <constraint firstItem="4Uy-vg-w7m" firstAttribute="top" secondItem="nnK-EL-4hw" secondAttribute="bottom" id="6rO-Qc-rKd"/>
+                            <constraint firstItem="Jsi-NZ-tFB" firstAttribute="top" secondItem="IKR-mN-A9U" secondAttribute="bottom" constant="10" id="AHM-hv-kWa"/>
                             <constraint firstItem="geR-Wt-eME" firstAttribute="leading" secondItem="MvG-6t-tT7" secondAttribute="leadingMargin" constant="69" id="CJk-Sb-n3E"/>
                             <constraint firstItem="Bw4-dV-0za" firstAttribute="top" secondItem="fNW-n5-F9a" secondAttribute="bottom" constant="51" id="F8C-5W-bCM"/>
+                            <constraint firstItem="IKR-mN-A9U" firstAttribute="top" secondItem="b6J-FP-lDk" secondAttribute="bottom" constant="8" symbolic="YES" id="IO2-hp-VYA"/>
                             <constraint firstItem="fNW-n5-F9a" firstAttribute="leading" secondItem="MvG-6t-tT7" secondAttribute="leading" constant="44" id="NxF-CF-TKR"/>
-                            <constraint firstItem="fNW-n5-F9a" firstAttribute="top" secondItem="nnK-EL-4hw" secondAttribute="bottom" constant="112" id="Oro-ZK-l1V"/>
+                            <constraint firstItem="fNW-n5-F9a" firstAttribute="top" secondItem="nnK-EL-4hw" secondAttribute="bottom" priority="100" constant="112" id="Oro-ZK-l1V"/>
                             <constraint firstItem="Bw4-dV-0za" firstAttribute="leading" secondItem="MvG-6t-tT7" secondAttribute="leadingMargin" constant="30" id="RUp-MZ-gof"/>
                             <constraint firstItem="IKR-mN-A9U" firstAttribute="leading" secondItem="MvG-6t-tT7" secondAttribute="leadingMargin" constant="60" id="SMV-FJ-7ev"/>
+                            <constraint firstItem="geR-Wt-eME" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IKR-mN-A9U" secondAttribute="bottom" constant="10" id="Uvr-qK-ttb"/>
                             <constraint firstAttribute="trailing" secondItem="fNW-n5-F9a" secondAttribute="trailing" constant="43" id="Wg3-3s-VM8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IKR-mN-A9U" secondAttribute="trailing" constant="60" id="X6q-Ye-wQM"/>
                             <constraint firstItem="jeZ-Nh-uR6" firstAttribute="top" secondItem="Bw4-dV-0za" secondAttribute="bottom" constant="24" id="XpH-Gr-VOf"/>
@@ -171,15 +205,26 @@
                             <constraint firstAttribute="trailingMargin" secondItem="agn-le-L2P" secondAttribute="trailing" constant="60" id="e5x-MU-o7J"/>
                             <constraint firstAttribute="trailing" secondItem="4Uy-vg-w7m" secondAttribute="trailing" id="eFD-Kk-6aM"/>
                             <constraint firstItem="4Uy-vg-w7m" firstAttribute="leading" secondItem="MvG-6t-tT7" secondAttribute="leading" id="geE-EW-7Jz"/>
+                            <constraint firstItem="agn-le-L2P" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IKR-mN-A9U" secondAttribute="bottom" constant="10" id="iyh-67-asc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Bw4-dV-0za" secondAttribute="trailing" constant="30" id="lGR-1T-DvF"/>
-                            <constraint firstItem="D5h-I6-9cs" firstAttribute="top" secondItem="Jsi-NZ-tFB" secondAttribute="bottom" constant="130" id="rJH-QD-q3S"/>
+                            <constraint firstItem="Jsi-NZ-tFB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IKR-mN-A9U" secondAttribute="bottom" constant="10" id="t2Y-d6-bF9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jeZ-Nh-uR6" secondAttribute="trailing" constant="86" id="uLQ-Pk-7J7"/>
-                            <constraint firstItem="D5h-I6-9cs" firstAttribute="top" secondItem="geR-Wt-eME" secondAttribute="bottom" constant="130" id="uqb-Ia-8oJ"/>
+                            <constraint firstItem="geR-Wt-eME" firstAttribute="top" secondItem="IKR-mN-A9U" secondAttribute="bottom" constant="10" id="uRV-7w-9cI"/>
                             <constraint firstItem="Jsi-NZ-tFB" firstAttribute="centerX" secondItem="MvG-6t-tT7" secondAttribute="centerX" id="xyE-VQ-EjJ"/>
-                            <constraint firstItem="D5h-I6-9cs" firstAttribute="top" secondItem="agn-le-L2P" secondAttribute="bottom" constant="132" id="ybq-5X-x04"/>
+                            <constraint firstItem="agn-le-L2P" firstAttribute="top" secondItem="IKR-mN-A9U" secondAttribute="bottom" constant="10" id="xyS-m8-JVI"/>
                             <constraint firstItem="b6J-FP-lDk" firstAttribute="leading" secondItem="MvG-6t-tT7" secondAttribute="leadingMargin" constant="78" id="z5J-rI-akA"/>
                             <constraint firstItem="agn-le-L2P" firstAttribute="top" secondItem="IKR-mN-A9U" secondAttribute="bottom" constant="60" id="zch-c5-pTJ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6Gt-Ft-pQW"/>
+                                <exclude reference="IO2-hp-VYA"/>
+                                <exclude reference="Uvr-qK-ttb"/>
+                                <exclude reference="t2Y-d6-bF9"/>
+                                <exclude reference="iyh-67-asc"/>
+                                <exclude reference="zch-c5-pTJ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
@@ -189,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgE-td-NqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="317" y="417"/>
+            <point key="canvasLocation" x="943" y="417"/>
         </scene>
         <!--欢迎注册-->
         <scene sceneID="1R6-WA-BSR">
@@ -294,7 +339,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZc-J3-npt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="943" y="1264"/>
+            <point key="canvasLocation" x="2064" y="1388"/>
         </scene>
         <!--找回密码-->
         <scene sceneID="Aiu-hf-Bf2">
@@ -386,7 +431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RoW-LC-ZIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1450" y="417"/>
+            <point key="canvasLocation" x="2076" y="417"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="otG-JQ-geU">
@@ -405,7 +450,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I7r-Iz-Chh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="317" y="1264"/>
+            <point key="canvasLocation" x="1450" y="1388"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uJ0-QA-wrn">
@@ -424,7 +469,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Phc-ou-CDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="824" y="417"/>
+            <point key="canvasLocation" x="1450" y="417"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dkL-93-S4K">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YGe-S3-qTF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mvS-H5-gCE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="B36-AF-a5o" kind="relationship" relationship="rootViewController" id="bW3-z2-87H"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eZ5-e4-4wW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="916" y="1398"/>
         </scene>
     </scenes>
     <resources>

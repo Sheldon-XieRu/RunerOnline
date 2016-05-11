@@ -50,13 +50,12 @@
 
 
 - (IBAction)retrieveBtnClick:(id)sender {
-#warning 未实现代码
+#warning 未实现代码将用户名从邮件前面截取
     //截取到@之前的字符串为用户名!!!
     NSString *userName = self.emailField.text;
     [FDUserInfo sharedFDUserInfo].userEmail = self.emailField.text;
     [FDUserInfo sharedFDUserInfo].userRegisterName = userName;
     [FDUserInfo sharedFDUserInfo].userRegisterPassword = self.userPasswordField.text;
-    
     [[FDleanCloudTool sharedFDleanCloudTool] userRegister];
     [FDleanCloudTool sharedFDleanCloudTool].registerDelegate = self;
 }
