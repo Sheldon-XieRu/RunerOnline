@@ -52,27 +52,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)retrieveBtnClick:(id)sender {
-    NSLog(@"qwe");
-    
-    [AVUser requestPasswordResetForEmailInBackground:[NSString stringWithFormat:@"%@",self.mailTextField.text] block:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            NSLog(@"邮件已发送");
-          //  [self.retrieveDelegate retrievepasswordSucceed];
-        } else {
-          //  [self.retrieveDelegate retrievepasswordError];
-        }
-    }];
-    
-    [AVUser requestPasswordResetForEmailInBackground:@"myemail@example.com" block:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            
-        } else {
-            
-        }
-    }];
-    
     [FDleanCloudTool sharedFDleanCloudTool].retrieveDelegate = self;
     [FDUserInfo sharedFDUserInfo].userEmail = self.mailTextField.text;
+    [[FDleanCloudTool sharedFDleanCloudTool] userRetrievePassword];
 }
 
 - (IBAction)backActionClick:(id)sender {

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <AVOSCloud.h>
+#import "MBProgressHUD+KR.h"
 @interface ViewController ()
 
 @end
@@ -26,6 +27,8 @@
 - (void) test{
     NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
     NSLog(@"你好:%@",currentUsername);
+    
+    [MBProgressHUD showSuccess:currentUsername];
     NSString *currentEmail = [AVUser currentUser].email; // 当前用户的邮箱
     NSLog(@"请牢记您的邮箱:%@",currentEmail);
 }

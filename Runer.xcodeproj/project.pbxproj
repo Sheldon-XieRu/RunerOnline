@@ -12,7 +12,6 @@
 		8586A0321CE2DF29009B6E87 /* MBProgressHUD+KR.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A02E1CE2DF29009B6E87 /* MBProgressHUD+KR.m */; };
 		8586A0331CE2DF29009B6E87 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8586A02F1CE2DF29009B6E87 /* MBProgressHUD.bundle */; };
 		8586A0341CE2DF29009B6E87 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0311CE2DF29009B6E87 /* MBProgressHUD.m */; };
-		8586A05A1CE33375009B6E87 /* FDSinaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0591CE33375009B6E87 /* FDSinaViewController.m */; };
 		8586A05C1CE35FEE009B6E87 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A05B1CE35FEE009B6E87 /* Foundation+Log.m */; };
 		85C98C071CE1C069002524C4 /* FDleanCloudTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C98C061CE1C069002524C4 /* FDleanCloudTool.m */; };
 		85C98C0A1CE21651002524C4 /* FDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C98C091CE21651002524C4 /* FDRegisterViewController.m */; };
@@ -37,8 +36,6 @@
 		8586A02F1CE2DF29009B6E87 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		8586A0301CE2DF29009B6E87 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		8586A0311CE2DF29009B6E87 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		8586A0581CE33375009B6E87 /* FDSinaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDSinaViewController.h; sourceTree = "<group>"; };
-		8586A0591CE33375009B6E87 /* FDSinaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDSinaViewController.m; sourceTree = "<group>"; };
 		8586A05B1CE35FEE009B6E87 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 		85C98C051CE1C069002524C4 /* FDleanCloudTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDleanCloudTool.h; sourceTree = "<group>"; };
 		85C98C061CE1C069002524C4 /* FDleanCloudTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDleanCloudTool.m; sourceTree = "<group>"; };
@@ -136,8 +133,6 @@
 				85C98C091CE21651002524C4 /* FDRegisterViewController.m */,
 				8586A01D1CE2B5A4009B6E87 /* FDRetrieveViewController.h */,
 				8586A01E1CE2B5A4009B6E87 /* FDRetrieveViewController.m */,
-				8586A0581CE33375009B6E87 /* FDSinaViewController.h */,
-				8586A0591CE33375009B6E87 /* FDSinaViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -374,7 +369,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8586A05A1CE33375009B6E87 /* FDSinaViewController.m in Sources */,
 				85EE28C41CE16CBB00FCAA8F /* ViewController.m in Sources */,
 				85EE28C11CE16CBB00FCAA8F /* AppDelegate.m in Sources */,
 				85D3CFB01CE1A7F300E48C73 /* FDUserInfo.m in Sources */,

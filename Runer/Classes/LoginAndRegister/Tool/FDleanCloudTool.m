@@ -9,14 +9,30 @@
 #import "FDleanCloudTool.h"
 #import <AVOSCloud.h>
 #import <AVOSCloudSNS.h>
+#import "MBProgressHUD+KR.h"
+#import <LeanCloudSocial/AVUser+SNS.h>
 @interface  FDleanCloudTool()
 
-//**注册 */
-- (void) userRegister;
-//** 登陆*/
+/**
+ *  公开登陆接口
+ */
 - (void) userLogin;
-//**找回密码*/
+/**
+ *  公开注册接口
+ */
+- (void) userRegister;
+/**
+ *  公开找回密码接口
+ */
 - (void) userRetrievePassword;
+/**
+ *  公开三方微博登录
+ */
+- (void) sinaAutho;
+/**
+ *  公开三方qq登录
+ */
+- (void) TencentAutho;
 @end
 
 @implementation FDleanCloudTool
@@ -80,6 +96,7 @@ singleton_implementation(FDleanCloudTool)
         // 成功或失败处理...
     } progressBlock:^(NSInteger percentDone) {
         // 上传进度数据，percentDone 介于 0 和 100。
+        [MBProgressHUD showMessage:@"上传头像中..."];
         NSLog(@"%ld",(long)percentDone);
     }];
     //下载进度
@@ -92,10 +109,12 @@ singleton_implementation(FDleanCloudTool)
 - (void) userRetrievePassword{
     [AVUser requestPasswordResetForEmailInBackground:[NSString stringWithFormat:@"%@",[FDUserInfo sharedFDUserInfo].userEmail] block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
+            [MBProgressHUD showMessage:@"正在发送邮件"];
             NSLog(@"邮件已发送");
             [self.retrieveDelegate retrievepasswordSucceed];
         } else {
             [self.retrieveDelegate retrievepasswordError];
+            [MBProgressHUD showError:@"邮箱地址错误"];
         }
     }];
 }
@@ -114,6 +133,8 @@ singleton_implementation(FDleanCloudTool)
                 NSDictionary *rawUser = object[@"raw-user"]; // 性别等第三方平台返回的用户信息
                 //...
                 NSLog(@"\naccessToken:%@\nusername:%@\navatar:%@\nrawUser:%@",accessToken,username,avatar,rawUser);
+                
+                [FDUserInfo sharedFDUserInfo].userRegisterName = username;
                 
             }
         } toPlatform:AVOSCloudSNSSinaWeibo];

@@ -55,7 +55,7 @@ singleton_interface(FDleanCloudTool)
  */
 - (void) userRegister;
 /**
- *  公开修改密码接口
+ *  公开找回密码接口
  */
 - (void) userRetrievePassword;
 /**

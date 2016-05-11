@@ -69,10 +69,12 @@
     [FDUserInfo sharedFDUserInfo].userpassword = self.userPasswordField.text;
     //设置登陆状态代理
     [FDleanCloudTool sharedFDleanCloudTool].loginDelegate = self;
-    /**
-     *  登陆
-     */
+    if (self.userNameField.text.length == 0 || self.userPasswordField.text.length == 0) {
+        [MBProgressHUD showError:@"请输入用户名和密码"];
+    }else{
+    //登陆
     [[FDleanCloudTool sharedFDleanCloudTool]userLogin];
+    }
 }
 //注册按钮
 - (IBAction)registerBtnClick:(id)sender {
@@ -80,7 +82,6 @@
 }
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
-    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎%@!",[AVUser currentUser].username]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
     
