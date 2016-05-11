@@ -10,7 +10,7 @@
 #import "FDUserInfo.h"
 #import <AVOSCloud.h>
 #import "FDleanCloudTool.h"
-
+#import "MBProgressHUD+KR.h"
 @interface FDViewController ()<FDLoginDelegate>
 /**
  *  用户名字段
@@ -72,14 +72,14 @@
 
     
 }
+//注册按钮
 - (IBAction)registerBtnClick:(id)sender {
-    [FDUserInfo sharedFDUserInfo].userName = self.userNameField.text;
-    [FDUserInfo sharedFDUserInfo].userpassword = self.userPasswordField.text;
-    [[FDleanCloudTool sharedFDleanCloudTool]userRegister];
+   
 }
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
     NSLog(@"登陆控制器中 获取登陆成功");
+    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎%@!",[AVUser currentUser].username]];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
     
@@ -94,16 +94,5 @@
 -(void)dealloc{
     NSLog(@"登陆窗户消失");
 }
-- (void)registerSuccess{
-    NSLog(@"注册成功");
-}
-- (void)registerError{
-    NSLog(@"注册失败");
-}
-- (void)registerpasswordError{
-    NSLog(@"找回密码失败");
-}
--(void)registerpasswordSucceed{
-    NSLog(@"找回密码成功");
-}
+
 @end

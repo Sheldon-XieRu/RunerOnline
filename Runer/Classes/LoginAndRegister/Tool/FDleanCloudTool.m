@@ -47,11 +47,11 @@ singleton_implementation(FDleanCloudTool)
         if (succeeded) {
             // 注册成功
             NSLog(@"注册成功");
-            [self.loginDelegate registerSuccess];
+            [self.registerDelegate registerSuccess];
         } else {
             // 失败的原因可能有多种，常见的是用户名已经存在。
             NSLog(@"%@注册失败",error);
-            [self.loginDelegate registerError];
+            [self.registerDelegate registerError];
         }
     }];
 }
@@ -59,9 +59,9 @@ singleton_implementation(FDleanCloudTool)
 - (void) userRetrievePassword{
     [AVUser requestPasswordResetForEmailInBackground:[NSString stringWithFormat:@"%@",[FDUserInfo sharedFDUserInfo].userEmail] block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            [self.loginDelegate registerpasswordSucceed];
+            [self.registerDelegate registerSuccess];
         } else {
-            [self.loginDelegate registerpasswordError];
+            [self.registerDelegate registerError];
         }
     }];
 }

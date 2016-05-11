@@ -9,9 +9,14 @@
 #import "FDRegisterViewController.h"
 #import "FDleanCloudTool.h"
 #import "FDUserInfo.h"
-@interface FDRegisterViewController ()<FDLoginDelegate>
+#import "MBProgressHUD+KR.h"
+@interface FDRegisterViewController ()<FDSRegisterDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *userPasswordField;
 - (IBAction)retrieveBtnClick:(id)sender;
+- (IBAction)backBtnClick:(id)sender;
+
+
 
 @end
 
@@ -23,11 +28,18 @@
 }
 #pragma mark -- 界面相关
 - (void)addIcon{
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mail"]];
-    imageView.frame = CGRectMake(0, 0, 50, 50);
-//    imageView.contentMode = UIViewContentModeCenter;
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+    imageView.image = [UIImage imageNamed:@"mail"];
+    imageView.contentMode = UIViewContentModeCenter;
     self.emailField.leftView = imageView;
     self.emailField.leftViewMode = UITextFieldViewModeAlways;
+    
+    
+    imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50, 20)];
+    imageView.image = [UIImage imageNamed:@"lock"];
+    imageView.contentMode = UIViewContentModeCenter;
+    self.userPasswordField.leftView = imageView;
+    self.userPasswordField.leftViewMode = UITextFieldViewModeAlways;
     
     
 }
@@ -39,9 +51,25 @@
 
 - (IBAction)retrieveBtnClick:(id)sender {
     [FDUserInfo sharedFDUserInfo].userEmail = self.emailField.text;
+    [FDUserInfo sharedFDUserInfo].userRegisterName = self.emailField.text;
+    [FDUserInfo sharedFDUserInfo].userRegisterPassword = self.userPasswordField.text;
     
     [[FDleanCloudTool sharedFDleanCloudTool] userRetrievePassword];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)backBtnClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(void)registerError{
+    [MBProgressHUD showError:@"注册失败"];
+}
+-(void)registerSuccess{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [MBProgressHUD showSuccess:@"注册成功"];
+    
+}
+- (void)registerNetError{
+    [MBProgressHUD showMessage:@"网络错误"];
+    NSLog(@"网络错误");
+}
 @end

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		54B0AABF24A4F43F71C1C194 /* libPods-Runer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8BF26880E8E5E343C05867 /* libPods-Runer.a */; };
 		8586A01F1CE2B5A4009B6E87 /* FDRetrieveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A01E1CE2B5A4009B6E87 /* FDRetrieveViewController.m */; };
+		8586A0321CE2DF29009B6E87 /* MBProgressHUD+KR.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A02E1CE2DF29009B6E87 /* MBProgressHUD+KR.m */; };
+		8586A0331CE2DF29009B6E87 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8586A02F1CE2DF29009B6E87 /* MBProgressHUD.bundle */; };
+		8586A0341CE2DF29009B6E87 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0311CE2DF29009B6E87 /* MBProgressHUD.m */; };
 		85C98C071CE1C069002524C4 /* FDleanCloudTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C98C061CE1C069002524C4 /* FDleanCloudTool.m */; };
 		85C98C0A1CE21651002524C4 /* FDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C98C091CE21651002524C4 /* FDRegisterViewController.m */; };
 		85D3CFAF1CE1A7F300E48C73 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D3CF221CE1A7F300E48C73 /* FDViewController.m */; };
@@ -27,6 +30,11 @@
 		62534A8F534C53C5E678AE6B /* Pods-Runer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Runer/Pods-Runer.release.xcconfig"; sourceTree = "<group>"; };
 		8586A01D1CE2B5A4009B6E87 /* FDRetrieveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRetrieveViewController.h; sourceTree = "<group>"; };
 		8586A01E1CE2B5A4009B6E87 /* FDRetrieveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDRetrieveViewController.m; sourceTree = "<group>"; };
+		8586A02D1CE2DF29009B6E87 /* MBProgressHUD+KR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+KR.h"; sourceTree = "<group>"; };
+		8586A02E1CE2DF29009B6E87 /* MBProgressHUD+KR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+KR.m"; sourceTree = "<group>"; };
+		8586A02F1CE2DF29009B6E87 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		8586A0301CE2DF29009B6E87 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8586A0311CE2DF29009B6E87 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		85C98C051CE1C069002524C4 /* FDleanCloudTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDleanCloudTool.h; sourceTree = "<group>"; };
 		85C98C061CE1C069002524C4 /* FDleanCloudTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDleanCloudTool.m; sourceTree = "<group>"; };
 		85C98C081CE21651002524C4 /* FDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRegisterViewController.h; sourceTree = "<group>"; };
@@ -62,6 +70,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8586A02C1CE2DF29009B6E87 /* MBProgessHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8586A02D1CE2DF29009B6E87 /* MBProgressHUD+KR.h */,
+				8586A02E1CE2DF29009B6E87 /* MBProgressHUD+KR.m */,
+				8586A02F1CE2DF29009B6E87 /* MBProgressHUD.bundle */,
+				8586A0301CE2DF29009B6E87 /* MBProgressHUD.h */,
+				8586A0311CE2DF29009B6E87 /* MBProgressHUD.m */,
+			);
+			path = MBProgessHUD;
+			sourceTree = "<group>";
+		};
 		85D3CDCD1CE1A7F200E48C73 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +105,7 @@
 		85D3CDCF1CE1A7F200E48C73 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				8586A02C1CE2DF29009B6E87 /* MBProgessHUD */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -284,6 +305,7 @@
 			files = (
 				85EE28CC1CE16CBB00FCAA8F /* LaunchScreen.storyboard in Resources */,
 				85EE28C91CE16CBB00FCAA8F /* Assets.xcassets in Resources */,
+				8586A0331CE2DF29009B6E87 /* MBProgressHUD.bundle in Resources */,
 				85D3CFB21CE1A7F300E48C73 /* LoginAndRegister.storyboard in Resources */,
 				85EE28C71CE16CBB00FCAA8F /* Main.storyboard in Resources */,
 			);
@@ -351,7 +373,9 @@
 				8586A01F1CE2B5A4009B6E87 /* FDRetrieveViewController.m in Sources */,
 				85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */,
 				85C98C071CE1C069002524C4 /* FDleanCloudTool.m in Sources */,
+				8586A0341CE2DF29009B6E87 /* MBProgressHUD.m in Sources */,
 				85C98C0A1CE21651002524C4 /* FDRegisterViewController.m in Sources */,
+				8586A0321CE2DF29009B6E87 /* MBProgressHUD+KR.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

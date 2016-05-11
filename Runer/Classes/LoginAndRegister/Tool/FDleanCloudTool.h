@@ -19,20 +19,32 @@
 - (void) loginFaild;
 //网路错误
 - (void) loginNetError;
+@end
+
+@protocol FDSRegisterDelegate <NSObject>
 //注册成功
 - (void) registerSuccess;
 //注册失败
 - (void) registerError;
-//找回密码成功
-- (void) registerpasswordSucceed;
-//找回密码失败
-- (void) registerpasswordError;
+//网路错误
+- (void) registerNetError;
 @end
 
+@protocol FDRetrieveDelegate <NSObject>
+//找回密码成功
+- (void) retrievepasswordSucceed;
+//找回密码失败
+- (void) retrievepasswordError;
+//网路错误
+- (void) retrieveNetError;
+@end
 
 @interface FDleanCloudTool : NSObject
 
 @property (nonatomic,weak) id<FDLoginDelegate> loginDelegate;
+@property (nonatomic,weak) id<FDSRegisterDelegate> registerDelegate;
+@property (nonatomic,weak) id<FDRetrieveDelegate> retrieveDelegate;
+
 singleton_interface(FDleanCloudTool)
 //公开一个登陆接口
 - (void) userLogin;

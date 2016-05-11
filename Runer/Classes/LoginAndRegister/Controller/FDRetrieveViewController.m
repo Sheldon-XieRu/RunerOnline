@@ -7,10 +7,13 @@
 //
 
 #import "FDRetrieveViewController.h"
-
-@interface FDRetrieveViewController ()
+#import "FDleanCloudTool.h"
+#import "MBProgressHUD+KR.h"
+#import <AVOSCloud.h>
+@interface FDRetrieveViewController ()<FDRetrieveDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *mailTextField;
 - (IBAction)retrieveBtnClick:(id)sender;
+- (IBAction)backActionClick:(id)sender;
 
 @end
 
@@ -18,13 +21,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mail"]];
+    
+    [self addIcon];
+   
+}
+- (void)addIcon{
+     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mail"]];
     imageView.frame = CGRectMake(0, 0, 50, 50);
     //    imageView.contentMode = UIViewContentModeCenter;
     self.mailTextField.leftView = imageView;
     self.mailTextField.leftViewMode = UITextFieldViewModeAlways;
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -39,8 +46,25 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)retrieveBtnClick:(id)sender {
+//找回密码成功
+- (void)retrievepasswordSucceed{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)retrieveBtnClick:(id)sender {
+    [FDleanCloudTool sharedFDleanCloudTool].retrieveDelegate = self;
+    [MBProgressHUD showSuccess:[NSString stringWithFormat:@"欢迎%@",[AVUser currentUser].username]];
+}
+
+- (IBAction)backActionClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)retrieveNetError{
+    [MBProgressHUD showError:@"网络错误"];
+    NSLog(@"网络错误");
+    
+}
+//找回密码失败
+-(void)retrievepasswordError{
+    NSLog(@"找回密码失败");
 }
 @end
