@@ -66,4 +66,11 @@ singleton_interface(FDleanCloudTool)
  *  公开三方qq登录
  */
 - (void) TencentAutho;
+/**
+ *  定义一个存数据方法
+ */
+- (void)saveDataWith:(id)object forKey:(NSString *)str;
+/**
+ *  定义一个取数据方法
+ */
 @end

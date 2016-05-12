@@ -172,5 +172,10 @@ singleton_implementation(FDleanCloudTool)
     } toPlatform:AVOSCloudSNSQQ];
 }
 
-
+//存储数据
+- (void)saveDataWith:(id)object forKey:(NSString *)str{
+    [[AVUser currentUser] setObject:object forKey:str];
+    [[AVUser currentUser] saveInBackground];
+}
+//读取数据
 @end

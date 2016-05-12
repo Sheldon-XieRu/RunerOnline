@@ -199,6 +199,7 @@
                     <connections>
                         <outlet property="userAgeTextfield" destination="Zx2-ah-lYW" id="3ua-DO-oZO"/>
                         <outlet property="userEmailTextField" destination="mK6-XZ-xmz" id="7ZI-MN-h9f"/>
+                        <outlet property="userImageView" destination="3d9-Ba-pLV" id="fEy-g2-tq8"/>
                         <outlet property="userNameTextField" destination="eq8-rC-cmg" id="dpG-uF-l3V"/>
                     </connections>
                 </viewController>

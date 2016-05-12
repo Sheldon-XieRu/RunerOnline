@@ -8,10 +8,11 @@
 
 #import "FDEditPofrofileViewController.h"
 #import <AVOSCloudSNS.h>
-@interface FDEditPofrofileViewController ()
+@interface FDEditPofrofileViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userEmailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userAgeTextfield;
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 
 - (IBAction)editMyProfileBtnClick:(id)sender;
 - (IBAction)backBtnClick:(id)sender;
@@ -22,7 +23,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.userImageView addGestureRecognizer:[[UIGestureRecognizer alloc]initWithTarget:self action:@selector(headImageViewTep)]];
+}
+- (void)headImageViewTep{
+    [self choolImage:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+-(void)choolImage:(UIImagePickerControllerSourceType)type{
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.sourceType =type;
+    picker.allowsEditing = YES;
+    //设置代理
+    picker.delegate = self;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    NSLog(@"%@",info);
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    self.userImageView.image = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     self.userNameTextField.text = [AVUser currentUser].username;
@@ -49,7 +69,7 @@
 - (IBAction)editMyProfileBtnClick:(id)sender {
 
     [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [[AVUser currentUser] setObject:self.userEmailTextField.text forKey:@"eamil"];
+        [[AVUser currentUser] setObject:self.userEmailTextField.text forKey:@"email"];
         [[AVUser currentUser] saveInBackground];
     }];
     [[AVUser currentUser] setObject:self.userAgeTextfield.text forKey:@"age"];
