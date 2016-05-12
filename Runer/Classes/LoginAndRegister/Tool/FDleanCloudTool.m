@@ -153,10 +153,7 @@ singleton_implementation(FDleanCloudTool)
                 
             }
         } toPlatform:AVOSCloudSNSSinaWeibo];
-        
-    
 }
-
 - (void) TencentAutho{
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ
                      withAppKey:@"2871162928" andAppSecret:@"48251a10a8ec697289ed23faf7e0626c" andRedirectURI:@"https://api.weibo.com/oauth2/default.html"];
