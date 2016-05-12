@@ -12,7 +12,6 @@
 #import "MBProgressHUD+KR.h"
 #import <LeanCloudSocial/AVUser+SNS.h>
 @interface  FDleanCloudTool()
-
 /**
  *  公开登陆接口
  */
@@ -63,14 +62,25 @@ singleton_implementation(FDleanCloudTool)
         if (succeeded) {
             // 注册成功
             NSLog(@"注册成功");
+            if ([FDUserInfo sharedFDUserInfo].sinaLogin) {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+            }
+            //上传头像
+            [self uploadImage];
+            
             [self.registerDelegate registerSuccess];
         } else {
             // 失败的原因可能有多种，常见的是用户名已经存在。
+            if ([FDUserInfo sharedFDUserInfo].sinaLogin) {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+            }
             NSLog(@"%@注册失败",error);
             [self.registerDelegate registerError];
         }
     }];
-    [self uploadImage];
+    
     /*
     //准备头像数据
     NSData *data = [@"我的工作经历" dataUsingEncoding:NSUTF8StringEncoding];
@@ -135,6 +145,11 @@ singleton_implementation(FDleanCloudTool)
                 NSLog(@"\naccessToken:%@\nusername:%@\navatar:%@\nrawUser:%@",accessToken,username,avatar,rawUser);
                 
                 [FDUserInfo sharedFDUserInfo].userRegisterName = username;
+                [FDUserInfo sharedFDUserInfo].userRegisterPassword =   accessToken;
+                [FDUserInfo sharedFDUserInfo].userRegister = YES;
+                [FDUserInfo sharedFDUserInfo].sinaToken = accessToken;
+                [FDUserInfo sharedFDUserInfo].sinaLogin = YES;
+                [self userRegister];
                 
             }
         } toPlatform:AVOSCloudSNSSinaWeibo];

@@ -82,8 +82,11 @@
 }
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+
+   
     
 }
 

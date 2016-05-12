@@ -35,5 +35,13 @@ singleton_interface(FDUserInfo)
 /**
  *  用来区分登录还是注册
  */
-@property (nonatomic, assign, getter=isUserRegister) BOOL *userRegister;
+@property (nonatomic, assign, getter=isUserRegister) BOOL userRegister;
+/**
+ *  sinaToken
+ */
+@property (nonatomic, strong) NSString *sinaToken;
+/**
+ *  区分是否为三方sina登录
+ */
+@property (nonatomic, assign ,getter=isSinaLogin) BOOL sinaLogin;
 @end

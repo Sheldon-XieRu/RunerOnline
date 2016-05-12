@@ -50,11 +50,12 @@
 
 
 - (IBAction)retrieveBtnClick:(id)sender {
-#warning 未实现代码将用户名从邮件前面截取
-    //截取到@之前的字符串为用户名!!!
     NSString *userName = self.emailField.text;
-    [FDUserInfo sharedFDUserInfo].userEmail = self.emailField.text;
-    [FDUserInfo sharedFDUserInfo].userRegisterName = userName;
+    NSRange renge = [userName rangeOfString:@"@"];
+    [FDUserInfo sharedFDUserInfo].userEmail = userName;
+   //截取邮箱前面字符为用户名
+    [FDUserInfo sharedFDUserInfo].userRegisterName = [userName substringToIndex:renge.location];
+     NSLog(@"%@",[FDUserInfo sharedFDUserInfo].userRegisterName);
     [FDUserInfo sharedFDUserInfo].userRegisterPassword = self.userPasswordField.text;
     [[FDleanCloudTool sharedFDleanCloudTool] userRegister];
     [FDleanCloudTool sharedFDleanCloudTool].registerDelegate = self;
@@ -69,8 +70,6 @@
 -(void)registerSuccess{
     [MBProgressHUD showSuccess:@"注册成功"];
     [self dismissViewControllerAnimated:YES completion:nil];
-   
-    
 }
 - (void)registerNetError{
     [MBProgressHUD showMessage:@"网络错误"];
