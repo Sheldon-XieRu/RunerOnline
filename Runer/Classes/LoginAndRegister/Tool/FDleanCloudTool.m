@@ -77,6 +77,9 @@ singleton_implementation(FDleanCloudTool)
                 [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
             }
             NSLog(@"%@注册失败",error);
+            if ([FDUserInfo sharedFDUserInfo].sinaLogin) {
+                [self userLogin];
+            }
             [self.registerDelegate registerError];
         }
     }];
@@ -97,24 +100,28 @@ singleton_implementation(FDleanCloudTool)
     //================//上传头像
     UIImage *image = [UIImage imageNamed:@"瓦力"];
     NSData *headData = UIImagePNGRepresentation(image);
-    AVFile *headImage = [AVFile fileWithName:@"headImage.png" data:headData];
-    [headImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"头像地址%@",headImage.url);
-    }];
-    //上传进度
-    [headImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        // 成功或失败处理...
-    } progressBlock:^(NSInteger percentDone) {
-        // 上传进度数据，percentDone 介于 0 和 100。
-        [MBProgressHUD showMessage:@"上传头像中..."];
-        NSLog(@"%ld",(long)percentDone);
-    }];
-    //下载进度
-    [headImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        // data 就是文件的数据流
-    } progressBlock:^(NSInteger percentDone) {
-        //下载的进度数据，percentDone 介于 0 和 100。
-    }];
+    
+    NSString *headImageURL = [self saveDataWith:headData andFileName:@"headImage.png"];
+    
+    NSLog(@"头像地址%@",headImageURL);
+    [FDUserInfo sharedFDUserInfo].userHeadImage = headImageURL;
+   
+    
+//    //上传进度
+//    [headImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        // 成功或失败处理...
+//    } progressBlock:^(NSInteger percentDone) {
+//        // 上传进度数据，percentDone 介于 0 和 100。
+//        [MBProgressHUD showMessage:@"上传头像中..."];
+//        NSLog(@"%ld",(long)percentDone);
+//    }];
+//    
+//    //下载进度
+//    [headImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//        // data 就是文件的数据流
+//    } progressBlock:^(NSInteger percentDone) {
+//        //下载的进度数据，percentDone 介于 0 和 100。
+//    }];
 }
 - (void) userRetrievePassword{
     [AVUser requestPasswordResetForEmailInBackground:[NSString stringWithFormat:@"%@",[FDUserInfo sharedFDUserInfo].userEmail] block:^(BOOL succeeded, NSError *error) {
@@ -145,30 +152,29 @@ singleton_implementation(FDleanCloudTool)
                 NSLog(@"\naccessToken:%@\nusername:%@\navatar:%@\nrawUser:%@",accessToken,username,avatar,rawUser);
                 NSLog(@"%@",object);
                 
-<<<<<<< Updated upstream
-                [FDUserInfo sharedFDUserInfo].userRegisterName = username;
-                [FDUserInfo sharedFDUserInfo].userRegisterPassword =   accessToken;
+             [FDUserInfo sharedFDUserInfo].userName =  [FDUserInfo sharedFDUserInfo].userRegisterName = username;
+              [FDUserInfo sharedFDUserInfo].userpassword = [FDUserInfo sharedFDUserInfo].userRegisterPassword =   accessToken;
                 [FDUserInfo sharedFDUserInfo].userRegister = YES;
                 [FDUserInfo sharedFDUserInfo].sinaToken = accessToken;
                 [FDUserInfo sharedFDUserInfo].sinaLogin = YES;
+                [FDUserInfo sharedFDUserInfo].userEmail = [NSString stringWithFormat:@"%@@fdson.com",object[@"username"]];
+                [FDUserInfo sharedFDUserInfo].userHeadImage = object[@"avater"];
+                NSURL *url = [NSURL URLWithString:object[@"avatar_large"]];
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                [[FDleanCloudTool sharedFDleanCloudTool] saveDataWith:data andFileName:@"userImage"];
+                /**
+                 *  未实现
+                 */
+                AVFile *file =[AVFile fileWithURL:object[@"avatar_large"]];
+                [file getData];
+                
+                
                 [self userRegister];
                 
             }
         } toPlatform:AVOSCloudSNSSinaWeibo];
-=======
-                [AVUser loginWithAuthData:rawUser platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
-                    if (error) {
-                        //关联失败
-                        NSLog(@"三方登陆关联失败");
-                    }else{
-                        //登陆成功
-                        [self.registerDelegate registerSuccess];
-                    }
-                }];
-            }
-        } toPlatform:AVOSCloudSNSSinaWeibo];
     
->>>>>>> Stashed changes
+
 }
 - (void) TencentAutho{
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ
@@ -189,9 +195,40 @@ singleton_implementation(FDleanCloudTool)
 }
 
 //存储数据
-- (void)saveDataWith:(id)object forKey:(NSString *)str{
-    [[AVUser currentUser] setObject:object forKey:str];
-    [[AVUser currentUser] saveInBackground];
+static NSString *str = nil;
+- (NSString *)saveDataWith:(NSData *)data andFileName:(NSString *)filename{
+    AVFile *headImage = [AVFile fileWithName:filename data:data];
+    [headImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        str = headImage.url;
+        if (!succeeded) {
+            NSLog(@"上传失败:%@",error);
+        }
+        else
+        {
+            NSLog(@"上传成功%@",str);
+            [FDUserInfo sharedFDUserInfo].userHeadImage = str;
+            [FDUserInfo sharedFDUserInfo].userHeadImageData = data;
+        }
+    }];
+    return str;
 }
 //读取数据
+static id getData = nil;
+-(id)getDataWithUrl:(NSString *)url{
+    
+    AVFile *file = [AVFile fileWithURL:url];
+    [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+       getData  =  data;
+    } progressBlock:^(NSInteger percentDone) {
+        //下载的进度数据，percentDone 介于 0 和 100。
+        
+    }];
+    return getData;
+}
+
+
+- (void)refreshData
+{
+    //未实现
+}
 @end

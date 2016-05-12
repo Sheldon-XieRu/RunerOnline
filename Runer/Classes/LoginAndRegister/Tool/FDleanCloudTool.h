@@ -67,10 +67,20 @@ singleton_interface(FDleanCloudTool)
  */
 - (void) TencentAutho;
 /**
- *  定义一个存数据方法
+ *  定义一个存数据方法 传入 data 返回 url
  */
-- (void)saveDataWith:(id)object forKey:(NSString *)str;
+- (NSString *)saveDataWith:(NSData *)data andFileName:(NSString *)filename;
 /**
- *  定义一个取数据方法
+ *  定义一个取数据方法 传入 url 获取数据
  */
+- (id)getDataWithUrl:(NSString *)url;
+
+/**
+ *  刷新本地数据与数据库一样
+ */
+-(void)refreshData;
+
+
+
+
 @end

@@ -8,11 +8,14 @@
 
 #import "FDEditPofrofileViewController.h"
 #import <AVOSCloudSNS.h>
+#import "FDUserInfo.h"
+#import "FDleanCloudTool.h"
 @interface FDEditPofrofileViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userEmailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *userAgeTextfield;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+- (IBAction)editUserImage:(id)sender;
 
 - (IBAction)editMyProfileBtnClick:(id)sender;
 - (IBAction)backBtnClick:(id)sender;
@@ -23,7 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.userImageView addGestureRecognizer:[[UIGestureRecognizer alloc]initWithTarget:self action:@selector(headImageViewTep)]];
+//    [self.userImageView addGestureRecognizer:[[UIGestureRecognizer alloc]initWithTarget:self action:@selector(headImageViewTep)]];
+//    self.userImageView.userInteractionEnabled = YES;
 }
 - (void)headImageViewTep{
     [self choolImage:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -41,8 +45,14 @@
     NSLog(@"%@",info);
     UIImage *image = info[UIImagePickerControllerEditedImage];
     self.userImageView.image = image;
+    [self updateUserImage:image];
     [self dismissViewControllerAnimated:YES completion:nil];
     
+}
+- (void)updateUserImage:(UIImage *)image{
+    NSData *imageData = UIImagePNGRepresentation(image);
+   [FDUserInfo sharedFDUserInfo].userHeadImage = [[FDleanCloudTool sharedFDleanCloudTool]saveDataWith:imageData andFileName:@"headImage.png"];
+    [FDUserInfo sharedFDUserInfo].userHeadImageData = imageData;
 }
 - (void)viewWillAppear:(BOOL)animated{
     self.userNameTextField.text = [AVUser currentUser].username;
@@ -50,6 +60,7 @@
     if ([AVUser currentUser][@"age"]) {
         self.userAgeTextfield.text = [AVUser currentUser][@"age"];
     }
+    self.userImageView.image = [UIImage imageWithData:[FDUserInfo sharedFDUserInfo].userHeadImageData];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -66,17 +77,26 @@
 }
 */
 
+- (IBAction)editUserImage:(id)sender {
+    [self headImageViewTep];
+}
+
 - (IBAction)editMyProfileBtnClick:(id)sender {
 
     [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [[AVUser currentUser] setObject:self.userEmailTextField.text forKey:@"email"];
+        [[AVUser currentUser] setObject:self.userNameTextField.text forKey:@"username"];
+   
+        [[AVUser currentUser] setObject:self.userAgeTextfield.text forKey:@"age"];
         [[AVUser currentUser] saveInBackground];
-    }];
-    [[AVUser currentUser] setObject:self.userAgeTextfield.text forKey:@"age"];
+     }];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)backBtnClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+   
+    
 }
 @end

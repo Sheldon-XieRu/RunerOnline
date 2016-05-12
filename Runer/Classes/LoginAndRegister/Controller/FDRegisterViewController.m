@@ -50,11 +50,16 @@
 
 
 - (IBAction)retrieveBtnClick:(id)sender {
-    NSString *userName = self.emailField.text;
-    NSRange renge = [userName rangeOfString:@"@"];
-    [FDUserInfo sharedFDUserInfo].userEmail = userName;
+    NSString *userEmal = self.emailField.text;
+    [FDUserInfo sharedFDUserInfo].userEmail = userEmal;
    //截取邮箱前面字符为用户名
-    [FDUserInfo sharedFDUserInfo].userRegisterName = [userName substringToIndex:renge.location];
+    NSRange renge = [userEmal rangeOfString:@"@"];
+    if (renge.length) {
+        [FDUserInfo sharedFDUserInfo].userRegisterName = [userEmal substringToIndex:renge.location];
+    }else{
+        [MBProgressHUD showError:@"请输入正确的邮箱地址"];
+    }
+    
      NSLog(@"%@",[FDUserInfo sharedFDUserInfo].userRegisterName);
     [FDUserInfo sharedFDUserInfo].userRegisterPassword = self.userPasswordField.text;
     [[FDleanCloudTool sharedFDleanCloudTool] userRegister];
@@ -65,7 +70,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)registerError{
-    [MBProgressHUD showError:@"注册失败"];
+        
+     [MBProgressHUD showError:@"注册失败"];
+    
 }
 -(void)registerSuccess{
     [MBProgressHUD showSuccess:@"注册成功"];

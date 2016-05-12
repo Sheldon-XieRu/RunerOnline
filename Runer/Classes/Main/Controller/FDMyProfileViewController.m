@@ -7,12 +7,20 @@
 //
 
 #import "FDMyProfileViewController.h"
+#import "FDUserInfo.h"
+#import "FDleanCloudTool.h"
+#import <AVOSCloud.h>
 #import <AVUser+SNS.h>
 @interface FDMyProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userAgeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userEmailLabel;
+
+- (IBAction)backBtnClick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *myprofileBackgroundImage;
+
+- (IBAction)exitBtnClick:(id)sender;
 
 @end
 
@@ -26,6 +34,20 @@
     self.userNameLabel.text = [AVUser currentUser].username;
     self.userEmailLabel.text = [AVUser currentUser].email;
     self.userAgeLabel.text = [AVUser currentUser][@"age"];
+   NSData *data = [[FDleanCloudTool sharedFDleanCloudTool]getDataWithUrl:[FDUserInfo sharedFDUserInfo].userHeadImage];
+    
+    
+    if ([FDUserInfo sharedFDUserInfo].userHeadImageData) {
+      UIImage *headImage = [UIImage imageWithData:[FDUserInfo sharedFDUserInfo].userHeadImageData];
+        self.userImageView.image =headImage;
+        self.myprofileBackgroundImage.image = headImage;
+    }else{
+        UIImage *headImage = [UIImage imageWithData:data];
+        self.userImageView.image =headImage;
+    }
+    
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -42,4 +64,15 @@
 }
 */
 
+- (IBAction)backBtnClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)exitBtnClick:(id)sender {
+        [AVUser logOut];  //清除缓存用户对象
+        AVUser *currentUser = [AVUser currentUser];
+    NSLog(@"%@",currentUser);
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginAndRegister" bundle:nil];
+    [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+}
 @end

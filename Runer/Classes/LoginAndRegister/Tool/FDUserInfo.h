@@ -23,6 +23,16 @@ singleton_interface(FDUserInfo)
  */
 @property (nonatomic,strong) NSString *userEmail;
 
+/**
+ * 用户头像url
+ */
+@property (nonatomic,strong) NSString *userHeadImage;
+/**
+ * 用户头像imageData
+ */
+@property (nonatomic,strong)  NSData *userHeadImageData;
+
+
 
 /**
  * 注册的用户名

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <AVOSCloud.h>
 #import "MBProgressHUD+KR.h"
+#import "FDUserInfo.h"
 @interface ViewController ()
 
 @end
@@ -26,7 +27,14 @@
 }
 - (void) test{
     NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
-    NSLog(@"你好:%@",currentUsername);
+    if (currentUsername) {
+        NSLog(@"你好:%@",currentUsername);
+    }else if([FDUserInfo sharedFDUserInfo].sinaLogin){
+        NSLog(@"欢迎微博用户:%@",[FDUserInfo sharedFDUserInfo].userName);
+    }else{
+        NSLog(@"欢迎三方登陆用户");
+    }
+    
     
     [MBProgressHUD showSuccess:currentUsername];
     NSString *currentEmail = [AVUser currentUser].email; // 当前用户的邮箱
