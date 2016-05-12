@@ -92,6 +92,7 @@
 
 - (void)loginFaild{
     NSLog(@"登录失败");
+    [MBProgressHUD showError:@"用户不存在"];
 }
 -(void)loginNetError{
     NSLog(@"网络错误");

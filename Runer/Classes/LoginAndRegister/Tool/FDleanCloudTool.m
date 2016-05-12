@@ -135,7 +135,7 @@ singleton_implementation(FDleanCloudTool)
         [AVOSCloudSNS setupPlatform:AVOSCloudSNSSinaWeibo withAppKey:@"2871162928" andAppSecret:@"48251a10a8ec697289ed23faf7e0626c" andRedirectURI:@"https://api.weibo.com/oauth2/default.html"];
         [AVOSCloudSNS loginWithCallback:^(id object, NSError *error) {
             if (error) {
-               
+                [MBProgressHUD showError:@"认证失败"];
             } else {
                 NSString *accessToken = object[@"access_token"];
                 NSString *username = object[@"username"];
@@ -143,7 +143,9 @@ singleton_implementation(FDleanCloudTool)
                 NSDictionary *rawUser = object[@"raw-user"]; // 性别等第三方平台返回的用户信息
                 //...
                 NSLog(@"\naccessToken:%@\nusername:%@\navatar:%@\nrawUser:%@",accessToken,username,avatar,rawUser);
+                NSLog(@"%@",object);
                 
+<<<<<<< Updated upstream
                 [FDUserInfo sharedFDUserInfo].userRegisterName = username;
                 [FDUserInfo sharedFDUserInfo].userRegisterPassword =   accessToken;
                 [FDUserInfo sharedFDUserInfo].userRegister = YES;
@@ -153,6 +155,20 @@ singleton_implementation(FDleanCloudTool)
                 
             }
         } toPlatform:AVOSCloudSNSSinaWeibo];
+=======
+                [AVUser loginWithAuthData:rawUser platform:AVOSCloudSNSPlatformWeiBo block:^(AVUser *user, NSError *error) {
+                    if (error) {
+                        //关联失败
+                        NSLog(@"三方登陆关联失败");
+                    }else{
+                        //登陆成功
+                        [self.registerDelegate registerSuccess];
+                    }
+                }];
+            }
+        } toPlatform:AVOSCloudSNSSinaWeibo];
+    
+>>>>>>> Stashed changes
 }
 - (void) TencentAutho{
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ

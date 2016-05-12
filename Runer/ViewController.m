@@ -37,8 +37,8 @@
      [self.view.window setRootViewController: storyboard.instantiateInitialViewController];
     //[UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
     
-    [AVUser logOut];  //清除缓存用户对象
-    AVUser *currentUser = [AVUser currentUser];
-    NSLog(@"退出登录%@",currentUser);
+//    [AVUser logOut];  //清除缓存用户对象
+//    AVUser *currentUser = [AVUser currentUser];
+    NSLog(@"退出登录");
 }
 @end
