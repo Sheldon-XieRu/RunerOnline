@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -106,11 +107,65 @@
                                 <action selector="backBtnClick:" destination="uqU-zw-ThV" id="glC-kI-R16"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4py-uL-Hlu">
+                            <connections>
+                                <segue destination="c4g-ub-Wpg" kind="show" id="5Xg-hn-znJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gqc-sS-m0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1469" y="1852"/>
+        </scene>
+        <!--添加好友-->
+        <scene sceneID="6Qy-TK-oS7">
+            <objects>
+                <viewController id="c4g-ub-Wpg" customClass="FDAddFriendViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RCa-zW-SEA"/>
+                        <viewControllerLayoutGuide type="bottom" id="bjN-Rg-64H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8m4-fe-8Ks">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1cf-xm-6Kt">
+                                <rect key="frame" x="53" y="112" width="309" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ns0-bt-QeQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvA-Cs-bld">
+                                <rect key="frame" x="192" y="188" width="30" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="g8G-J1-EJ0"/>
+                                </constraints>
+                                <state key="normal" title="添加"/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1cf-xm-6Kt" firstAttribute="leading" secondItem="8m4-fe-8Ks" secondAttribute="leadingMargin" constant="30" id="3YA-88-QS8"/>
+                            <constraint firstItem="gvA-Cs-bld" firstAttribute="leading" secondItem="8m4-fe-8Ks" secondAttribute="leadingMargin" constant="172" id="DHX-2P-lYK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gvA-Cs-bld" secondAttribute="trailing" constant="172" id="VG0-JE-RuW"/>
+                            <constraint firstItem="gvA-Cs-bld" firstAttribute="top" secondItem="1cf-xm-6Kt" secondAttribute="bottom" constant="46" id="Zu0-0W-bIo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1cf-xm-6Kt" secondAttribute="trailing" constant="30" id="dbi-U1-gdo"/>
+                            <constraint firstItem="1cf-xm-6Kt" firstAttribute="top" secondItem="RCa-zW-SEA" secondAttribute="bottom" constant="48" id="k1X-co-CTW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="添加好友" id="AG4-cn-PX2">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="JcI-Qn-LAM"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GZc-dw-UXw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2052" y="1852"/>
         </scene>
         <!--My Profile View Controller-->
         <scene sceneID="Blg-59-y1k">
