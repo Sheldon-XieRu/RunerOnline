@@ -15,6 +15,7 @@
 		8586A0331CE2DF29009B6E87 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8586A02F1CE2DF29009B6E87 /* MBProgressHUD.bundle */; };
 		8586A0341CE2DF29009B6E87 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A0311CE2DF29009B6E87 /* MBProgressHUD.m */; };
 		8586A05C1CE35FEE009B6E87 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 8586A05B1CE35FEE009B6E87 /* Foundation+Log.m */; };
+		85954A991CE5A03F00B52548 /* FDFriendsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85954A981CE5A03F00B52548 /* FDFriendsListTableViewController.m */; };
 		85C98C071CE1C069002524C4 /* FDleanCloudTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C98C061CE1C069002524C4 /* FDleanCloudTool.m */; };
 		85C98C0A1CE21651002524C4 /* FDRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C98C091CE21651002524C4 /* FDRegisterViewController.m */; };
 		85D3CFAF1CE1A7F300E48C73 /* FDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D3CF221CE1A7F300E48C73 /* FDViewController.m */; };
@@ -43,6 +44,8 @@
 		8586A0301CE2DF29009B6E87 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		8586A0311CE2DF29009B6E87 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		8586A05B1CE35FEE009B6E87 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
+		85954A971CE5A03F00B52548 /* FDFriendsListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDFriendsListTableViewController.h; sourceTree = "<group>"; };
+		85954A981CE5A03F00B52548 /* FDFriendsListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDFriendsListTableViewController.m; sourceTree = "<group>"; };
 		85C98C051CE1C069002524C4 /* FDleanCloudTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDleanCloudTool.h; sourceTree = "<group>"; };
 		85C98C061CE1C069002524C4 /* FDleanCloudTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDleanCloudTool.m; sourceTree = "<group>"; };
 		85C98C081CE21651002524C4 /* FDRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDRegisterViewController.h; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 				857B91E91CE477D700E647F9 /* FDMyProfileViewController.m */,
 				857B91EE1CE4802F00E647F9 /* FDEditPofrofileViewController.h */,
 				857B91EF1CE4802F00E647F9 /* FDEditPofrofileViewController.m */,
+				85954A971CE5A03F00B52548 /* FDFriendsListTableViewController.h */,
+				85954A981CE5A03F00B52548 /* FDFriendsListTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 				85D3CFB01CE1A7F300E48C73 /* FDUserInfo.m in Sources */,
 				85D3CFAF1CE1A7F300E48C73 /* FDViewController.m in Sources */,
 				8586A01F1CE2B5A4009B6E87 /* FDRetrieveViewController.m in Sources */,
+				85954A991CE5A03F00B52548 /* FDFriendsListTableViewController.m in Sources */,
 				85EE28BE1CE16CBB00FCAA8F /* main.m in Sources */,
 				85C98C071CE1C069002524C4 /* FDleanCloudTool.m in Sources */,
 				8586A0341CE2DF29009B6E87 /* MBProgressHUD.m in Sources */,
