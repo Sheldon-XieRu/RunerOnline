@@ -79,8 +79,12 @@ singleton_interface(FDleanCloudTool)
  *  刷新本地数据与数据库一样
  */
 -(void)refreshData;
-
-
-
-
+/**
+ *  公开一个删除上次上传文件的接口 传入 url 删除相关文件!!
+ */
+- (void)delLaseUpdataFileWithURL:(NSString*)url;
+/**
+ *  打开应用的时候就更新/下载最新的头像 url 信息
+ */
+-(void)updateUserHeadImage;
 @end

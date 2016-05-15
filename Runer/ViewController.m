@@ -23,7 +23,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
 }
 - (void) test{
     NSString *currentUsername = [AVUser currentUser].username;// 当前用户名
@@ -34,8 +33,6 @@
     }else{
         NSLog(@"欢迎三方登陆用户");
     }
-    
-    
     [MBProgressHUD showSuccess:currentUsername];
     NSString *currentEmail = [AVUser currentUser].email; // 当前用户的邮箱
     NSLog(@"请牢记您的邮箱:%@",currentEmail);

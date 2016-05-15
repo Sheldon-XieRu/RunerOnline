@@ -17,17 +17,23 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 - (IBAction)editUserImage:(id)sender;
 
+
 - (IBAction)editMyProfileBtnClick:(id)sender;
 - (IBAction)backBtnClick:(id)sender;
 
+//用来临时保存从相册中取出的 image
+@property (nonatomic, strong)NSString  *imageUrl;
+//用来储存已经上传的图片内容
+@property (nonatomic,strong)NSData *imageData;
 @end
 
 @implementation FDEditPofrofileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self.userImageView addGestureRecognizer:[[UIGestureRecognizer alloc]initWithTarget:self action:@selector(headImageViewTep)]];
-//    self.userImageView.userInteractionEnabled = YES;
+    [self.userImageView addGestureRecognizer:[[UIGestureRecognizer alloc]initWithTarget:self action:@selector(headImageViewTep)]];
+    self.userImageView.userInteractionEnabled = YES;
+     self.userImageView.image = [UIImage imageWithData:[FDUserInfo sharedFDUserInfo].userHeadImageData];
 }
 - (void)headImageViewTep{
     [self choolImage:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -41,22 +47,24 @@
     picker.delegate = self;
     [self presentViewController:picker animated:YES completion:nil];
 }
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    NSLog(@"%@",info);
-    UIImage *image = info[UIImagePickerControllerEditedImage];
-    self.userImageView.image = image;
-    [self updateUserImage:image];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-}
-#pragma mark --照片选择方法二
 
+#pragma mark --照片选择方法二
 - (void) headImageViewTap{
     NSLog(@"你敲我干啥?");
     // 打开相册 或者相机 选取图片
     UIActionSheet *sht = [[UIActionSheet alloc]initWithTitle:@"请选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"相机" otherButtonTitles:@"相册",nil];
     //<!---注意这个逆天的反过来的语法---->
     [sht showInView:self.view];
+}
+#pragma mark --选择照片触发器
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    NSLog(@"%@",info);
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    self.imageData = UIImagePNGRepresentation(image);
+    self.userImageView.image = image;
+    [self updateUserImage:image];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 2) {
@@ -84,8 +92,8 @@
 #pragma mark --上传照片
 - (void)updateUserImage:(UIImage *)image{
     NSData *imageData = UIImagePNGRepresentation(image);
-   [FDUserInfo sharedFDUserInfo].userHeadImage = [[FDleanCloudTool sharedFDleanCloudTool]saveDataWith:imageData andFileName:@"headImage.png"];
-    [FDUserInfo sharedFDUserInfo].userHeadImageData = imageData;
+    self.imageUrl = [[FDleanCloudTool sharedFDleanCloudTool]saveDataWith:imageData andFileName:@"headImage.png"];
+  
 }
 - (void)viewWillAppear:(BOOL)animated{
     self.userNameTextField.text = [AVUser currentUser].username;
@@ -93,7 +101,9 @@
     if ([AVUser currentUser][@"age"]) {
         self.userAgeTextfield.text = [AVUser currentUser][@"age"];
     }
-    self.userImageView.image = [UIImage imageWithData:[FDUserInfo sharedFDUserInfo].userHeadImageData];
+   
+    
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -112,7 +122,7 @@
 
 - (IBAction)editUserImage:(id)sender {
 //    [self headImageViewTep];
-    [self headImageViewTap];
+    [self headImageViewTep];
 }
 
 - (IBAction)editMyProfileBtnClick:(id)sender {
@@ -120,17 +130,24 @@
     [[AVUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [[AVUser currentUser] setObject:self.userEmailTextField.text forKey:@"email"];
         [[AVUser currentUser] setObject:self.userNameTextField.text forKey:@"username"];
-   
+         [[AVUser currentUser] setObject:self.imageUrl forKey:@"userImageUrl"];
         [[AVUser currentUser] setObject:self.userAgeTextfield.text forKey:@"age"];
         [[AVUser currentUser] saveInBackground];
      }];
-    
+    //给用户修改的 HeadimageURL 保存到内存中
+    [FDUserInfo sharedFDUserInfo].userHeadImageUrl = self.imageUrl;
+    //将已经上传的图片储存到内存中
+    [FDUserInfo sharedFDUserInfo].userHeadImageData = self.imageData;
+    //是否需要保存上传的数据
+    [FDUserInfo sharedFDUserInfo].saveButtonClick = YES;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)backBtnClick:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-   
+   //放弃存储时顺手删除数据
+    [FDUserInfo sharedFDUserInfo].saveButtonClick = NO;
+    
     
 }
 @end

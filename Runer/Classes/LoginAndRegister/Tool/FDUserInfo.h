@@ -26,11 +26,24 @@ singleton_interface(FDUserInfo)
 /**
  * 用户头像url
  */
-@property (nonatomic,strong) NSString *userHeadImage;
+@property (nonatomic,strong) NSString *userHeadImageUrl;
+/**
+ * 上传数据保存的头像 url
+ */
+@property (nonatomic,strong) NSString *userHeadImageUpdataUrl;
+
 /**
  * 用户头像imageData
  */
 @property (nonatomic,strong)  NSData *userHeadImageData;
+/**
+ * 用户头像imageData
+ */
+@property (nonatomic,strong)  NSData *userHeadImageUpdataData;
+/**
+ * 用户是否保存头像
+ */
+@property (nonatomic,assign ,getter = isSave)  BOOL saveButtonClick;
 
 
 
@@ -45,7 +58,7 @@ singleton_interface(FDUserInfo)
 /**
  *  用来区分登录还是注册
  */
-@property (nonatomic, assign, getter=isUserRegister) BOOL userRegister;
+@property (nonatomic, assign, getter = isUserRegister) BOOL userRegister;
 /**
  *  sinaToken
  */

@@ -32,6 +32,10 @@
  *  公开三方qq登录
  */
 - (void) TencentAutho;
+/**
+ *  存储临时使用的 AVFile
+ */
+@property (nonatomic ,strong)AVFile *file;
 @end
 
 @implementation FDleanCloudTool
@@ -104,7 +108,7 @@ singleton_implementation(FDleanCloudTool)
     NSString *headImageURL = [self saveDataWith:headData andFileName:@"headImage.png"];
     
     NSLog(@"头像地址%@",headImageURL);
-    [FDUserInfo sharedFDUserInfo].userHeadImage = headImageURL;
+    [FDUserInfo sharedFDUserInfo].userHeadImageUrl = headImageURL;
    
     
 //    //上传进度
@@ -158,7 +162,7 @@ singleton_implementation(FDleanCloudTool)
                 [FDUserInfo sharedFDUserInfo].sinaToken = accessToken;
                 [FDUserInfo sharedFDUserInfo].sinaLogin = YES;
                 [FDUserInfo sharedFDUserInfo].userEmail = [NSString stringWithFormat:@"%@@fdson.com",object[@"username"]];
-                [FDUserInfo sharedFDUserInfo].userHeadImage = object[@"avater"];
+                [FDUserInfo sharedFDUserInfo].userHeadImageUrl = object[@"avater"];
                 NSURL *url = [NSURL URLWithString:object[@"avatar_large"]];
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 [[FDleanCloudTool sharedFDleanCloudTool] saveDataWith:data andFileName:@"userImage"];
@@ -199,6 +203,7 @@ static NSString *str = nil;
 - (NSString *)saveDataWith:(NSData *)data andFileName:(NSString *)filename{
     AVFile *headImage = [AVFile fileWithName:filename data:data];
     [headImage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        self.file = headImage;
         str = headImage.url;
         if (!succeeded) {
             NSLog(@"上传失败:%@",error);
@@ -206,8 +211,21 @@ static NSString *str = nil;
         else
         {
             NSLog(@"上传成功%@",str);
-            [FDUserInfo sharedFDUserInfo].userHeadImage = str;
-            [FDUserInfo sharedFDUserInfo].userHeadImageData = data;
+            
+            if ([[FDUserInfo sharedFDUserInfo]isSave]) {
+                [MBProgressHUD showSuccess:@"头像上传成功"];
+                //删除之前的头像文件
+                [self delLaseUpdataFileWithURL:[FDUserInfo sharedFDUserInfo].userHeadImageUrl];
+                [FDUserInfo sharedFDUserInfo].userHeadImageUrl = str;
+                [FDUserInfo sharedFDUserInfo].userHeadImageData = data;
+                [FDUserInfo sharedFDUserInfo].saveButtonClick = NO;
+            }else{
+                [FDUserInfo sharedFDUserInfo].userHeadImageUpdataUrl = str;
+                [FDUserInfo sharedFDUserInfo].userHeadImageUpdataData = data;
+                [FDUserInfo sharedFDUserInfo].saveButtonClick = NO;
+            }
+            
+            
         }
     }];
     return str;
@@ -226,9 +244,29 @@ static id getData = nil;
     return getData;
 }
 
-
+//同步本地与服务器的数据
 - (void)refreshData
 {
     //未实现
 }
+
+//删除数据
+
+- (void)delLaseUpdataFileWithURL:(NSString*)url{
+    
+    AVFile *file = [AVFile fileWithURL:url];
+    [file deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    }];
+    NSLog(@"数据 url为:%@ 删除成功", url);
+}
+//给头像的 url 初始化,每次启动应用都需要下载更新头像的 url
+- (void)updateUserHeadImage{
+    [FDUserInfo sharedFDUserInfo].userHeadImageUrl = [AVUser currentUser][@"userImageUrl"];
+    [FDUserInfo sharedFDUserInfo].userHeadImageData = [[FDleanCloudTool sharedFDleanCloudTool]getDataWithUrl:[FDUserInfo sharedFDUserInfo].userHeadImageUrl];
+}
+
+                                                     
+                                                     
+                                                     
+                                                
 @end

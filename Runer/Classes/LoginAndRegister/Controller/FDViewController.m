@@ -82,12 +82,11 @@
 }
 #pragma mark -- KRLoginDelegate
 - (void)loginSuccess{
-    
          UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
+    //认证成功后更新用户的头像信息
+    [[FDleanCloudTool sharedFDleanCloudTool] updateUserHeadImage];
 
-   
-    
 }
 
 - (void)loginFaild{

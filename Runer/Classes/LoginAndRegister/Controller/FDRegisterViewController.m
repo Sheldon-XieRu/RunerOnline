@@ -60,7 +60,7 @@
         [MBProgressHUD showError:@"请输入正确的邮箱地址"];
     }
     
-     NSLog(@"%@",[FDUserInfo sharedFDUserInfo].userRegisterName);
+    NSLog(@"%@",[FDUserInfo sharedFDUserInfo].userRegisterName);
     [FDUserInfo sharedFDUserInfo].userRegisterPassword = self.userPasswordField.text;
     [[FDleanCloudTool sharedFDleanCloudTool] userRegister];
     [FDleanCloudTool sharedFDleanCloudTool].registerDelegate = self;

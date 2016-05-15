@@ -34,16 +34,18 @@
     self.userNameLabel.text = [AVUser currentUser].username;
     self.userEmailLabel.text = [AVUser currentUser].email;
     self.userAgeLabel.text = [AVUser currentUser][@"age"];
-   NSData *data = [[FDleanCloudTool sharedFDleanCloudTool]getDataWithUrl:[FDUserInfo sharedFDUserInfo].userHeadImage];
-    
+    NSData *data = [[FDleanCloudTool sharedFDleanCloudTool]getDataWithUrl:[FDUserInfo sharedFDUserInfo].userHeadImageUrl];
     
     if ([FDUserInfo sharedFDUserInfo].userHeadImageData) {
       UIImage *headImage = [UIImage imageWithData:[FDUserInfo sharedFDUserInfo].userHeadImageData];
         self.userImageView.image =headImage;
         self.myprofileBackgroundImage.image = headImage;
-    }else{
+    }else if([UIImage imageWithData:data]){
         UIImage *headImage = [UIImage imageWithData:data];
         self.userImageView.image =headImage;
+        self.myprofileBackgroundImage.image = headImage;
+    }else{
+        self.userImageView.image = [UIImage imageNamed:@"瓦力"];
     }
     
     
@@ -72,6 +74,8 @@
         [AVUser logOut];  //清除缓存用户对象
         AVUser *currentUser = [AVUser currentUser];
     NSLog(@"%@",currentUser);
+    //清空用户头像数据
+    [FDUserInfo sharedFDUserInfo].userHeadImageData = nil;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LoginAndRegister" bundle:nil];
     [UIApplication sharedApplication].keyWindow.rootViewController = storyboard.instantiateInitialViewController;
 }
