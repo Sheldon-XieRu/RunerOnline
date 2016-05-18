@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import <AVOSCloud.h>
 #import <AVOSCloudSNS.h>
-@interface AppDelegate ()
-
+#import "BMapKit.h"
+@interface AppDelegate ()<BMKGeneralDelegate>
+@property (nonatomic, strong) BMKMapManager *manger;
 @end
 
 @implementation AppDelegate
@@ -20,7 +21,19 @@
     [AVOSCloud setApplicationId:@"ghkO6er3yyKAwOwuA27KA60r-gzGzoHsz"
                       clientKey:@"prMiAUMqwqNlKQ3oRaBhHK8y"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    /**
+     *  百度地图
+     */
+    self.manger = [BMKMapManager new];
+    [self.manger start:@"izFdfwhWdXIv7YjvY9OzbQ9mvOOcVrKF" generalDelegate:self];
     return YES;
+}
+- (void)onGetNetworkState:(int)iError{
+    NSLog(@"联网状况%d",iError);
+}
+-(void)onGetPermissionState:(int)iError{
+    NSLog(@"授权状况%d",iError);
 }
 #pragma mark -- 三方登录
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{

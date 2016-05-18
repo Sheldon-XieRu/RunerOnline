@@ -35,7 +35,7 @@
     self.userEmailLabel.text = [AVUser currentUser].email;
     self.userAgeLabel.text = [AVUser currentUser][@"age"];
     NSData *data = [[FDleanCloudTool sharedFDleanCloudTool]getDataWithUrl:[FDUserInfo sharedFDUserInfo].userHeadImageUrl];
-    
+
     if ([FDUserInfo sharedFDUserInfo].userHeadImageData) {
       UIImage *headImage = [UIImage imageWithData:[FDUserInfo sharedFDUserInfo].userHeadImageData];
         self.userImageView.image =headImage;
