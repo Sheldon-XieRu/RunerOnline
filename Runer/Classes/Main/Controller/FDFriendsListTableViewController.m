@@ -7,10 +7,11 @@
 //
 
 #import "FDFriendsListTableViewController.h"
-
+#import <AVOSCloud.h>
+#import <AVUser+SNS.h>
 @interface FDFriendsListTableViewController ()
 - (IBAction)backBtnClick:(id)sender;
-
+@property (nonatomic, strong )NSArray *friensArray;
 @end
 
 @implementation FDFriendsListTableViewController
@@ -24,7 +25,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [[AVUser currentUser] getFollowersAndFollowees:^(NSDictionary *dict, NSError *error) {
+        NSArray *followers=dict[@"followers"];
+        self.friensArray = followers;
+        NSArray *followees=dict[@"followees"];
+        self.friensArray = followees;
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -34,23 +42,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return self.friensArray.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-    // Configure the cell...
-    
+    if (cell == nil) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    }
+    cell.textLabel.text = self.friensArray[indexPath.row];
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
